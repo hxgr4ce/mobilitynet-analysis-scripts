@@ -13,7 +13,10 @@ def add_dist(points_df):
 
     distances = [calDistance(p1, p2) for (p1, p2) in zipped_points_list]
     distances.insert(0, 0)
-    with_distances_df = pd.concat([points_df, pd.Series(distances, name="distance")], axis=1)
+    
+    points_df = points_df.reset_index(drop=True)
+
+    with_distances_df = pd.concat([points_df, pd.Series(distances, name="distance").reset_index(drop=True)], axis=1)
     return with_distances_df
 
 
